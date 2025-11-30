@@ -52,7 +52,9 @@ const UsersPage = () => {
             setNewUser({ telegramId: '', firstName: '', username: '' });
             fetchUsers();
         } catch (err) {
-            alert('خطأ في إضافة المستخدم');
+            console.error(err);
+            const msg = err.response?.data?.error || err.message || 'خطأ غير معروف';
+            alert(`خطأ في إضافة المستخدم: ${msg}`);
         }
     };
 

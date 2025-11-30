@@ -25,7 +25,9 @@ const Dashboard = () => {
         fetchMessages();
 
         // Socket.io connection
-        const socket = io(); // Auto-connects to same host/port in dev proxy or prod
+        // Socket.io connection
+        const socketUrl = import.meta.env.VITE_API_URL || undefined;
+        const socket = io(socketUrl); // Connects to backend URL in prod, or relative in dev
 
         socket.on('new_message', (msg) => {
             setMessages(prev => [...prev, msg]);
